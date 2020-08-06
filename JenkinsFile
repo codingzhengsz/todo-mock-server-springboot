@@ -21,9 +21,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                bat 'cd ./build/libs'
-                bat 'dir'
-                bat 'java -jar spring-boot-employee-0.0.1-SNAPSHOT.jar'
+                bat 'java -jar ./build/libs/spring-boot-employee-0.0.1-SNAPSHOT.jar'
             }
         }
     }
