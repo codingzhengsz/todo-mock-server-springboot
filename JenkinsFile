@@ -7,15 +7,22 @@ pipeline {
     }
 
     stages {
-        stage('Build') { 
+        stage('Test') {
             steps {
-                bat 'npm install' 
+                bat 'gradle test'
             }
         }
 
-        stage('Deploy') { 
+        stage('Test') {
             steps {
-                bat 'npm start' 
+                bat 'gradle build'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                bat 'cd ./build/libs'
+                bat 'java -jar spring-boot-employee-0.0.1-SNAPSHOT.jar'
             }
         }
     }
