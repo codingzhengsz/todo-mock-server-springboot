@@ -3,25 +3,29 @@ pipeline {
     agent any
 
     environment {
-        CI = 'true'
+        JENKINS_NODE_COOKIE = "donotkillme"
     }
 
     stages {
         stage('Test') {
             steps {
+                echo 'test'
                 bat 'gradle test'
             }
         }
 
         stage('Build') {
             steps {
+                echo 'build'
                 bat 'gradle build'
             }
         }
 
         stage('Deploy') {
             steps {
-                bat 'java -jar ./build/libs/spring-boot-employee-0.0.1-SNAPSHOT.jar'
+                echo 'deploy'
+                bat "copy build\\libs\\*.jar d:\\deploy\\"
+                bat "run.bat"
             }
         }
     }
